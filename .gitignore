@@ -2,6 +2,14 @@
 /dist
 /node_modules
 
+# env
+*.env
+.env
+
+# postgre
+/pgdata
+/docker/pgdata
+
 # Logs
 logs
 *.log
