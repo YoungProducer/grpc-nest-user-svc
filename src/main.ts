@@ -2,11 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { INestMicroservice, ValidationPipe } from '@nestjs/common';
 import { Transport } from '@nestjs/microservices';
 import { join } from 'node:path';
+import { Logger } from 'nestjs-pino';
 
 import { AppModule } from './app.module';
 import { protobufPackage } from './proto/user.pb';
 import { RpcExceptionFilter } from './lib/filters/rpc-exception.filter';
-import { Logger } from 'nestjs-pino';
+import { HttpExceptionFilter } from './lib/filters/http-exception.filter';
 
 async function bootstrap() {
   const app: INestMicroservice = await NestFactory.createMicroservice(
@@ -23,7 +24,7 @@ async function bootstrap() {
   );
 
   app.useLogger(app.get(Logger));
-  app.useGlobalFilters(new RpcExceptionFilter());
+  app.useGlobalFilters(new RpcExceptionFilter(), new HttpExceptionFilter());
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   await app.listen();
