@@ -5,6 +5,7 @@ import { join } from 'node:path';
 
 import { AppModule } from './app.module';
 import { protobufPackage } from './proto/user.pb';
+import { ExceptionFilter } from './lib/filters/rpc-exception.filter';
 
 async function bootstrap() {
   const app: INestMicroservice = await NestFactory.createMicroservice(
@@ -22,6 +23,7 @@ async function bootstrap() {
     },
   );
 
+  app.useGlobalFilters(new ExceptionFilter());
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   await app.listen();
