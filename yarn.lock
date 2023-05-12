@@ -2917,6 +2917,11 @@ grapheme-splitter@^1.0.4:
   resolved "https://registry.yarnpkg.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
+grpc-nest-common@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/grpc-nest-common/-/grpc-nest-common-1.0.2.tgz#0209b165fdef23256625b0883eaab203dbd501ba"
+  integrity sha512-kgD3dAPy075ZEXSm3fmJCU/eyDl0TK/VhMCRIjMtu329ic19H2GCZbJdvELFO/YAsqtOcXn8pOY7pHzNPxE6OA==
+
 "grpc-nest-proto@git+https://github.com/YoungProducer/grpc-nest-proto.git":
   version "1.0.0"
   resolved "git+https://github.com/YoungProducer/grpc-nest-proto.git#864606645f0dda54b47bb245198ebd85ffceb9a7"
