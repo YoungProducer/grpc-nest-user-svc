@@ -3,12 +3,14 @@ import { INestMicroservice, ValidationPipe } from '@nestjs/common';
 import { Transport } from '@nestjs/microservices';
 import { join } from 'node:path';
 import { Logger } from 'nestjs-pino';
+import {
+  RpcExceptionFilter,
+  HttpExceptionFilter,
+  PGExceptionFilter,
+} from 'grpc-nest-common';
 
 import { AppModule } from './app.module';
 import { protobufPackage } from './proto/user.pb';
-import { RpcExceptionFilter } from './lib/filters/rpc-exception.filter';
-import { HttpExceptionFilter } from './lib/filters/http-exception.filter';
-import { PGExceptionFilter } from './lib/filters/pg-exception.filter';
 
 async function bootstrap() {
   const app: INestMicroservice = await NestFactory.createMicroservice(
