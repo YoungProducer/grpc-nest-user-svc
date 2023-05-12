@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { AppModule } from './app.module';
 import { protobufPackage } from './proto/user.pb';
 import { ExceptionFilter } from './lib/filters/rpc-exception.filter';
+import { Logger } from 'nestjs-pino';
 
 async function bootstrap() {
   const app: INestMicroservice = await NestFactory.createMicroservice(
@@ -13,16 +14,15 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        url: 'localhost:50052',
+        url: 'localhost:50053',
         package: protobufPackage,
-        protoPath: join(
-          'node_modules/grpc-nest-proto/proto/event-broker.proto',
-        ),
+        protoPath: join('node_modules/grpc-nest-proto/proto/user.proto'),
       },
       bufferLogs: true,
     },
   );
 
+  app.useLogger(app.get(Logger));
   app.useGlobalFilters(new ExceptionFilter());
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 

@@ -1,8 +1,8 @@
-import path from 'path';
+import { resolve } from 'node:path';
 
 const entitiesNames = '*.entity{.ts,.js}';
 
-export const entitiesPath = path.resolve(
+export const entitiesPath = resolve(
   __dirname,
   '../../../',
   '**',
@@ -11,6 +11,6 @@ export const entitiesPath = path.resolve(
 
 const migrationsNames = '*{.ts,.js}';
 
-export const migrationsDir = path.resolve(__dirname, '../../../', 'migrations');
+export const migrationsDir = resolve(__dirname, '../../../', 'migrations');
 
-export const migrationsPath = path.resolve(migrationsDir, migrationsNames);
+export const migrationsPath = resolve(migrationsDir, migrationsNames);
