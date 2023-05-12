@@ -13,13 +13,13 @@ export interface CreateUserRequest {
 }
 
 export interface GetUserRequest {
-  id?: string | undefined;
+  id?: number | undefined;
   username?: string | undefined;
   email?: string | undefined;
 }
 
 export interface GetUserResponse {
-  id: string;
+  id: number;
   username: string;
   email: string;
 }
