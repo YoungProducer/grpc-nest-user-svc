@@ -5,7 +5,7 @@ import { join } from 'node:path';
 
 import { AppModule } from './app.module';
 import { protobufPackage } from './proto/user.pb';
-import { ExceptionFilter } from './lib/filters/rpc-exception.filter';
+import { RpcExceptionFilter } from './lib/filters/rpc-exception.filter';
 import { Logger } from 'nestjs-pino';
 
 async function bootstrap() {
@@ -23,7 +23,7 @@ async function bootstrap() {
   );
 
   app.useLogger(app.get(Logger));
-  app.useGlobalFilters(new ExceptionFilter());
+  app.useGlobalFilters(new RpcExceptionFilter());
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   await app.listen();
