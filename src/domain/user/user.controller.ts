@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, HttpStatus } from '@nestjs/common';
 import { UserService } from './user.service';
 import { GrpcMethod } from '@nestjs/microservices';
 import { USER_SERVICE_NAME } from 'src/proto/user.pb';
@@ -7,6 +7,8 @@ import { GetUserRequestDto } from './dto/get-user.request.dto';
 import { GetUserResponseDto } from './dto/get-user.response.dto';
 import { plainToInstance } from 'class-transformer';
 import { CreateUserResponseDto } from './dto/create-user.response.dto';
+import { BaseResponseDto } from 'grpc-nest-common';
+import { userModuleErrorMessages } from './constants/error-messages';
 
 @Controller()
 export class UserController {
@@ -23,6 +25,14 @@ export class UserController {
   async getUser(dto: GetUserRequestDto): Promise<GetUserResponseDto> {
     const userEntity = await this.userService.getUser(dto);
 
-    return plainToInstance(GetUserResponseDto, userEntity);
+    const baseRes: BaseResponseDto = {
+      status: userEntity ? HttpStatus.OK : HttpStatus.NOT_FOUND,
+      error: userEntity ? null : userModuleErrorMessages.userNotFound(),
+    };
+
+    return plainToInstance(GetUserResponseDto, {
+      ...userEntity,
+      ...baseRes,
+    });
   }
 }
