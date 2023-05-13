@@ -2924,7 +2924,7 @@ grpc-nest-common@^1.0.2:
 
 "grpc-nest-proto@git+https://github.com/YoungProducer/grpc-nest-proto.git":
   version "1.0.0"
-  resolved "git+https://github.com/YoungProducer/grpc-nest-proto.git#864606645f0dda54b47bb245198ebd85ffceb9a7"
+  resolved "git+https://github.com/YoungProducer/grpc-nest-proto.git#00c83c967d04626437f701f87075c07c77e2258a"
 
 has-flag@^3.0.0:
   version "3.0.0"

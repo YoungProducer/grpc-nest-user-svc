@@ -6,14 +6,17 @@ import { CreateUserRequestDto } from './dto/create-user.request.dto';
 import { GetUserRequestDto } from './dto/get-user.request.dto';
 import { GetUserResponseDto } from './dto/get-user.response.dto';
 import { plainToInstance } from 'class-transformer';
+import { CreateUserResponseDto } from './dto/create-user.response.dto';
 
 @Controller()
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @GrpcMethod(USER_SERVICE_NAME, 'CreateUser')
-  async createUser(dto: CreateUserRequestDto): Promise<void> {
-    await this.userService.create(dto);
+  async createUser(dto: CreateUserRequestDto): Promise<CreateUserResponseDto> {
+    const res = await this.userService.create(dto);
+
+    return plainToInstance(CreateUserResponseDto, res);
   }
 
   @GrpcMethod(USER_SERVICE_NAME, 'GetUser')

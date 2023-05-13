@@ -4,6 +4,7 @@ import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { CreateUserRequestDto } from './dto/create-user.request.dto';
 import { GetUserRequestDto } from './dto/get-user.request.dto';
+import { CreateUserResponseDto } from './dto/create-user.response.dto';
 
 @Injectable()
 export class UserService {
@@ -12,13 +13,21 @@ export class UserService {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  async create({ email, username }: CreateUserRequestDto): Promise<void> {
+  async create({
+    email,
+    username,
+  }: CreateUserRequestDto): Promise<CreateUserResponseDto> {
     const userToCreate = this.userRepository.create({
       email,
       username,
     });
 
     await this.userRepository.save(userToCreate);
+
+    return {
+      status: 201,
+      error: null,
+    };
   }
 
   async getUser(dto: GetUserRequestDto): Promise<UserEntity> {

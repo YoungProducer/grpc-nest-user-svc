@@ -11,4 +11,10 @@ export class GetUserResponseDto implements GetUserResponse {
 
   @Expose()
   email: string;
+
+  @Expose()
+  status: number;
+
+  @Expose()
+  error: string | null;
 }
