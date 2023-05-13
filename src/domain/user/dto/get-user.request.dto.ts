@@ -12,10 +12,7 @@ const allEmptyError =
 
 export class GetUserRequestDto implements GetUserRequest {
   @ValidateIf(
-    (dto: GetUserRequestDto) => {
-      console.log(!dto.email && !dto.username && !!dto.id);
-      return !dto.email && !dto.username && !!dto.id;
-    },
+    (dto: GetUserRequestDto) => !dto.email && !dto.username && !!dto.id,
     {
       message: allEmptyError,
     },
