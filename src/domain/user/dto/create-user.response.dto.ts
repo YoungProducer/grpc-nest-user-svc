@@ -1,11 +1,8 @@
-import { Exclude, Expose } from 'class-transformer';
+import { Exclude } from 'class-transformer';
+import { BaseResponseDto } from 'grpc-nest-common';
 import { CreateUserResponse } from 'src/proto/user.pb';
 
 @Exclude()
-export class CreateUserResponseDto implements CreateUserResponse {
-  @Expose()
-  status: number;
-
-  @Expose()
-  error: string | null;
-}
+export class CreateUserResponseDto
+  extends BaseResponseDto
+  implements CreateUserResponse {}

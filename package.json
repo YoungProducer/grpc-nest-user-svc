@@ -40,7 +40,7 @@
     "@nestjs/typeorm": "^9.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
-    "grpc-nest-common": "^1.0.3",
+    "grpc-nest-common": "^1.0.5",
     "grpc-nest-proto": "git+https://github.com/YoungProducer/grpc-nest-proto.git",
     "nestjs-pino": "^3.2.0",
     "pg": "^8.10.0",
